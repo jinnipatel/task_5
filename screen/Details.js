@@ -33,7 +33,7 @@ export default class Details extends Component {
                 <Text>{this.state.firstName}</Text>
                 <Text>{this.state.lastName}</Text>
                 <Text>{this.state.email}</Text>
-
+                <Text>{this.state.phone}</Text>
             </View>
         )
     }

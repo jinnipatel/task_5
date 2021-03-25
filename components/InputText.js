@@ -10,10 +10,9 @@ class InputText extends Component {
         return (
             <View>
                 <View style={styles.inputContainer}>
-                    <Icons name={this.props.iconsname} />
-                    <Icon name={this.props.Iconname} size={28} color="#000" style={styles.iconStyle} />
-                    <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                        style={styles.inputStyle}
+                    {/* <Icons name={this.props.iconsname} /> */}
+                    {/* <Icon name={this.props.Iconname} size={28} color="#009387" style={styles.iconStyle} onPress={this.props.onPress} /> */}
+                    <TextInput style={styles.textInput}
                         placeholder={this.props.placeholder}
                         secureTextEntry={Boolean(this.props.secureTextEntry)}
                         onChangeText={this.props.onChangeText}
@@ -30,18 +29,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 10,
         borderBottomColor: '#000',
-        borderBottomWidth: 1,
+        marginLeft: 10,
+        marginTop: 15,
         width: 250
     },
     iconStyle: {
         marginRight: 20,
         marginTop: 7
     },
-    inputStyle: {
-        fontSize: 20,
-
-
-    }
+    textInput: {
+        flex: 1,
+        marginTop: Platform.OS === 'ios' ? 0 : -12,
+        paddingLeft: 10,
+        color: '#05375a',
+    },
 
 })
 export default InputText

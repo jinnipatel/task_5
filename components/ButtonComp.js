@@ -16,10 +16,9 @@ export default class ButtonComp extends Component {
 }
 const styles = StyleSheet.create({
   button: {
-    width: 260,
+    width: 325,
     height: 45,
-    marginTop: 20,
-
+    marginLeft: 15,
   },
   gradient: {
     flex: 1,
@@ -29,8 +28,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 16
-  }
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  // signIn: {
+  //   width: 500,
+  //   height: 50,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   borderRadius: 10
+  // },
 })
 
 

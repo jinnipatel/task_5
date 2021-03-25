@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Image, TextInput } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import InputText from '../components/InputText';
-import ButtonComp from '../components/ButtonComp';
+import InputText from '../../components/InputText';
+import ButtonComp from '../../components/ButtonComp';
 
 
 export default class Details extends Component {
@@ -32,18 +32,15 @@ export default class Details extends Component {
     render() {
         return (
             <View>
-                <Image source={require("../assets/Img/images.jpg")} style={{ width: 150, height: 150, alignSelf: 'center', borderRadius: 100, marginTop: 50 }} />
+                <Image source={require("../../assets/Img/images.jpg")} style={{ width: 150, height: 150, alignSelf: 'center', borderRadius: 100, marginTop: 50 }} />
                 <Text style={{ fontSize: 25, alignSelf: 'center', marginTop: 20 }}>User Details</Text>
-                {/* <TextInput placeholder="First Name" value={this.state.firstName} style={{ margin: 5, marginLeft: 100 }}></TextInput>
-                <TextInput placeholder="Last Name" value={this.state.lastName} style={{ margin: 5 }}></TextInput>
-                <TextInput placeholder="Email" value={this.state.email} style={{ margin: 5 }}></TextInput>
-                <TextInput placeholder="Phone" value={this.state.phone} style={{ margin: 5 }}></TextInput> */}
                 <View style={{ marginLeft: 80 }}>
                     <InputText placeholder="First Name" Iconname="person" value={this.state.firstName} />
                     <InputText placeholder="Last Name" Iconname="person" value={this.state.lastName} />
                     <InputText placeholder="Email" Iconname="email" value={this.state.email} />
                     <InputText placeholder="Phone" Iconname="phone" value={this.state.phone} />
-                    <ButtonComp name="Logout" />
+                    <ButtonComp name="Logout" onPress={() => this.props.navigation.navigate("Login")} />
+
                 </View>
 
 

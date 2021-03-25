@@ -59,7 +59,7 @@ class Signup extends Component {
   making_api_call_all_fields = () => {
     if (this.allFieldValidation()) {
       console.log('data from register - ', this.state.firstname, this.state.lastname, this.state.email, this.state.phone)
-      let signup_data = { firstName: this.state.firstname, lastName: this.state.lastname, email: this.state.email, phone: this.state.phone }
+      let signup_data = { firstName: this.state.firstname, lastName: this.state.lastname, email: this.state.email, phone: this.state.phone, password: this.state.password }
       AsyncStorage.setItem('signup_data', JSON.stringify(signup_data));
       alert("SuccessFully Signup")
       this.props.navigation.navigate('Login');

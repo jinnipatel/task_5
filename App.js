@@ -23,29 +23,12 @@ function App() {
   return (
     // <SplashScreen/>
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen name="Splash_Screen" component={SplashScreen} />
-        <Stack.Screen name="Login" component={Login} options={{
-          title: 'Login',
-          headerStyle: {
-            backgroundColor: '#35327d',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }} />
-        <Stack.Screen name="Signup" component={Signup} options={{
-          headerStyle: {
-            backgroundColor: "#35327d"
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: 'bold'
-          }
-        }} />
+      <Stack.Navigator >
+        <Stack.Screen name="Splash_Screen" component={SplashScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Auth" component={Auth} />
+        <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} />
         <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
     </NavigationContainer>

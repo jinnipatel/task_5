@@ -3,7 +3,7 @@ import { Image, View, Text } from 'react-native'
 
 
 export default function FlatListDetails(props) {
-    const { image, name, email } = props.route.params;
+    const { url, title, thumbnailUrl } = props.route.params;
     //    const a = JSON.parse(item);
     // const [item, setItem] = useState('')
     // setItem()
@@ -12,10 +12,9 @@ export default function FlatListDetails(props) {
 
     return (
         <View>
-            <Image source={image}></Image>
-            <Text>{name}</Text>
-            <Text>{email}</Text>
-
+            <Image source={{ uri: url }} style={{ width: 100, height: 100, marginTop: 50, borderRadius: 50, alignSelf: 'center' }}></Image>
+            <Text style={{ alignSelf: 'center', marginTop: 10 }}>{title}</Text>
+            <Image source={{ uri: thumbnailUrl }} style={{ width: 100, height: 100, marginTop: 50, borderRadius: 50, alignSelf: 'center' }}></Image>
 
         </View>
     )

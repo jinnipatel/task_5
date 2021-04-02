@@ -16,7 +16,8 @@ class InputText extends Component {
                         placeholder={this.props.placeholder}
                         secureTextEntry={Boolean(this.props.secureTextEntry)}
                         onChangeText={this.props.onChangeText}
-                        value={this.props.value} />
+                        value={this.props.value}
+                        placeholderTextColor={this.props.placeholderTextColor} />
                 </View>
             </View>
         )

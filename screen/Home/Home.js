@@ -2,81 +2,96 @@
 import React, { Component } from 'react'
 import { View, FlatList, Text, StatusBar, SafeAreaView, StyleSheet, Image, TouchableOpacity, Alert, Button } from 'react-native'
 import flatlistData from './flatlistData'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import styles from './styles'
+import * as Animatable from 'react-native-animatable';
 
 
-const FlatListItem = (props) => {
+// const FlatListItem = (props) => {
 
-    return (
-        <TouchableOpacity onPress={props.onPress}>
-            <View style={{
-                flexDirection: 'row',
-                borderRadius: 10,
-                marginBottom: 10,
-                marginHorizontal: 10,
-                marginVertical: 10,
-                shadowColor: "#000",
-                shadowOffset: {
-                    width: 0,
-                    height: 5,
-                },
-                shadowOpacity: 0.34,
-                shadowRadius: 6.27,
-
-                elevation: 10,
-                backgroundColor: props.index % 2 == 0 ? 'lightblue' : '#999999'
-
-            }}  >
-
-                <Image source={props.item.image}
-                    style={{ width: 100, height: 100, margin: 5, borderRadius: 50 }}  >
-
-                </Image>
-                <View style={{ flexDirection: 'column' }}  >
-                    <Text style={styles.flatlistitem}>{props.item.name}</Text>
-                    <Text style={styles.flatlistitem}>{props.item.email}</Text>
-
-                </View>
-
-                <Icon name='chevron-right' size={40} style={styles.rightIcon} />
+//     return (
+//         <TouchableOpacity onPress={props.onPress}>
+//             <Animatable.View
+//                 animation="bounceInLeft"
 
 
-            </View>
-        </TouchableOpacity>
+//                 style={{
+//                     flexDirection: 'row',
+//                     borderRadius: 10,
+//                     marginBottom: 10,
+//                     marginHorizontal: 10,
+//                     marginVertical: 10,
+//                     shadowColor: "#000",
+//                     shadowOffset: {
+//                         width: 0,
+//                         height: 5,
+//                     },
+//                     shadowOpacity: 0.34,
+//                     shadowRadius: 6.27,
+
+//                     elevation: 10,
+//                     backgroundColor: props.index % 2 == 0 ? 'lightblue' : '#999999'
+
+//                 }}  >
+
+//                 <Image source={props.item.image}
+//                     style={{
+//                         width: 100, height: 100, margin: 5, borderRadius: 50
+//                     }}  >
+
+//                 </Image>
+//                 <View style={{ flexDirection: 'column' }}  >
+//                     <Text style={styles.flatlistitem}>{props.item.name}</Text>
+//                     <Text style={styles.flatlistitem}>{props.item.email}</Text>
+
+//                 </View>
+
+//                 <Icon name='chevron-right' size={40} style={styles.rightIcon} />
+
+
+//             </Animatable.View>
+//         </TouchableOpacity>
 
 
 
 
-    )
-}
+//     )
+// }
 
-const styles = StyleSheet.create({
-    flatlistitem: {
-        padding: 10,
-        fontSize: 18
-    },
-    rightIcon: {
-        margin: 30,
-        textAlign: 'right'
-    }
-})
 
 
 export default class Home extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            data: []
+        }
+    }
+    componentDidMount() {
+        this.apicall()
+    }
+    async apicall() {
+        let resp = await fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
+        let respjson = await resp.json()
+        // console.warn(respjson)
+        this.setState({ data: respjson })
 
+
+    }
 
 
     render() {
 
         return (
 
-            <View style={{ marginTop: 50, marginBottom: 10 }}>
+            <View style={{ marginBottom: 10 }}>
                 <StatusBar backgroundColor='#04336a' barStyle="light-content" />
 
-                <Icon name="person" size={40} onPress={() => this.props.navigation.navigate("Details")} style={{ textAlign: 'right' }} />
+                {/* <Icon name="person" size={40} onPress={() => this.props.navigation.navigate("Details")} style={{ textAlign: 'right' }} /> */}
 
-                <FlatList
+                {/* <FlatList
                     data={flatlistData}
                     renderItem={({ item, index }) => {
 
@@ -91,7 +106,60 @@ export default class Home extends Component {
                         )
                     }}>
 
-                </FlatList>
+                </FlatList> */}
+
+                <FlatList
+                    data={this.state.data}
+                    renderItem={({ item }) => <TouchableOpacity onPress={() => this.props.navigation.navigate("FlatListDetails", item)} >
+                        <Animatable.View
+                            animation="bounceInLeft"
+
+
+                            style={{
+                                flexDirection: 'row',
+                                borderRadius: 10,
+                                marginBottom: 10,
+                                marginHorizontal: 10,
+                                marginVertical: 10,
+                                shadowColor: "#000",
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 5,
+                                },
+                                shadowOpacity: 0.34,
+                                shadowRadius: 6.27,
+
+                                elevation: 10,
+                                // backgroundColor: props.index % 2 == 0 ? 'lightblue' : '#999999'
+
+                            }}  >
+
+                            <Image source={{ uri: item.url }}
+                                style={{
+                                    width: 50, height: 50, borderRadius: 50, marginLeft: 25, marginTop: 25
+                                }} >
+
+                            </Image>
+                            <Image source={{ uri: item.thumbnailUrl }}
+                                style={{
+                                    width: 50, height: 50, borderRadius: 50, marginLeft: 25, marginTop: 25
+                                }} >
+
+                            </Image>
+                            <View style={{ flexDirection: 'row' }}   >
+                                <Text style={styles.flatlistitem}>{item.title}</Text>
+                                <Icon name='chevron-right' size={40} style={styles.rightIcon} />
+
+                                {/* <Text style={styles.flatlistitem}>{item.email}</Text> */}
+                            </View>
+
+
+
+
+
+                        </Animatable.View>
+                    </TouchableOpacity>}
+                />
 
             </View>
 

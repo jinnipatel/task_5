@@ -6,6 +6,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import styles from './styles'
 
 
 
@@ -55,13 +56,14 @@ class Login extends Component {
       >
 
         <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content" />
+          <StatusBar backgroundColor='#0C1B32' barStyle="light-content" />
           <View style={styles.header} >
             <Text style={styles.text_header} > WelCome ! </Text>
           </View>
 
           <Animatable.View style={styles.footer}
             animation="fadeInUpBig"
+            iterationDelay={400}
           >
             <Text style={styles.text_footer}>Email</Text>
             <View style={styles.action}>
@@ -95,15 +97,14 @@ class Login extends Component {
             {/* <ButtonComp name="Signup" onPress={() => this.props.navigation.navigate('Signup')} />  */}
             <View style={styles.button}>
               <ButtonComp
-                name="Sign In"
+                name="LogIn"
                 onPress={() => this.props.navigation.navigate('Auth', {
                   email: this.state.email,
                   password: this.state.password
                 })} />
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Signup')}
-                style={styles.signup}
-              >
+                style={styles.signup}>
                 <Text style={styles.button_text}>Sign Up</Text>
               </TouchableOpacity>
             </View>
@@ -128,64 +129,64 @@ class Login extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#009387'
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 50
-  },
-  footer: {
-    flex: 3,
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  text_header: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 30
-  },
-  text_footer: {
-    color: '#05375a',
-    fontSize: 18,
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#009387'
+//   },
+//   header: {
+//     flex: 1,
+//     justifyContent: 'flex-end',
+//     paddingHorizontal: 20,
+//     paddingBottom: 50
+//   },
+//   footer: {
+//     flex: 3,
+//     backgroundColor: '#fff',
+//     borderTopLeftRadius: 30,
+//     borderTopRightRadius: 30,
+//     paddingHorizontal: 20,
+//     paddingVertical: 30,
+//     justifyContent: 'flex-start',
+//     alignItems: 'flex-start'
+//   },
+//   text_header: {
+//     color: '#fff',
+//     fontWeight: 'bold',
+//     fontSize: 30
+//   },
+//   text_footer: {
+//     color: '#05375a',
+//     fontSize: 18,
 
-  },
-  action: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
-  },
-  button: {
-    alignItems: 'center',
-    marginTop: 5
-  },
-  signup: {
-    width: 325,
-    height: 45,
-    marginLeft: 15,
-    borderColor: '#009387',
-    borderWidth: 1,
-    marginTop: 15,
-    borderRadius: 5,
-  },
-  button_text: {
-    textAlign: 'center',
-    color: '#009387',
-    fontSize: 20,
-    marginTop: 5,
-    fontWeight: 'bold'
+//   },
+//   action: {
+//     flexDirection: 'row',
+//     marginTop: 10,
+//     borderBottomWidth: 1,
+//     borderBottomColor: '#f2f2f2',
+//     paddingBottom: 5,
+//   },
+//   button: {
+//     alignItems: 'center',
+//     marginTop: 5
+//   },
+//   signup: {
+//     width: 325,
+//     height: 45,
+//     marginLeft: 15,
+//     borderColor: '#009387',
+//     borderWidth: 1,
+//     marginTop: 15,
+//     borderRadius: 5,
+//   },
+//   button_text: {
+//     textAlign: 'center',
+//     color: '#009387',
+//     fontSize: 20,
+//     marginTop: 5,
+//     fontWeight: 'bold'
 
-  }
-})
+//   }
+// })
 export default Login

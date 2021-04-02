@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Fontisto from 'react-native-vector-icons/Fontisto'
+import styles from './styles';
 
 
 
@@ -82,12 +83,13 @@ class Signup extends Component {
         style={styles.container}
       >
         <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content" />
+          <StatusBar backgroundColor='#0C1B32' barStyle="light-content" />
           <View style={styles.header}>
             <Text style={styles.text_header} > Register Now! </Text>
           </View>
           <Animatable.View style={styles.footer}
-            animation="fadeInUpBig" >
+            animation="fadeInUpBig"
+            iterationDelay={400} >
 
             <View style={styles.action}>
               <FontAwesome
@@ -292,66 +294,7 @@ class Signup extends Component {
 
 
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#009387'
-  },
-  action: {
-    flexDirection: 'row',
-    marginTop: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 50
-  },
-  text_header: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 30
-  },
-  footer: {
-    flex: 9,
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
 
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   flexDirection: 'column'
-  // },
-  // buttonstyle: {
-  //   marginTop: 20,
-  // },
-  // gradient: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   borderRadius: 5
-  // },
-  // button: {
-  //   width: 260,
-  //   height: 45,
-  //   marginTop: 20,
-
-  // },
-  // text: {
-  //   color: 'white',
-  //   fontSize: 16
-  // }
-})
 
 
 export default Signup;

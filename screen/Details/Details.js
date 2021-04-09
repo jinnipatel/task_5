@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CommonActions } from '@react-navigation/routers';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import InputText from '../../components/InputText';
@@ -36,6 +37,21 @@ export default class Details extends Component {
         this.setState({ firstName: parsed.firstName, lastName: parsed.lastName, email: parsed.email, phone: parsed.phone })
         AsyncStorage.setItem('signup_data', JSON.stringify(user));
 
+    }
+    resetStack = CommonActions.reset({
+        index: 0,
+        routes: [
+            { name: "SplashScreen" }
+        ],
+    });
+
+
+    removeAuthentication = async () => {
+        try {
+            await AsyncStorage.clear();
+            this.props.navigation.dispatch(this.resetStack);
+        } catch (e) {
+        }
     }
 
     render() {
@@ -94,7 +110,7 @@ export default class Details extends Component {
                                 <InputText placeholder="Phone" Iconname="phone" value={this.state.phone} placeholderTextColor="#fff" />
                             </View>
                             <View style={styles.button}>
-                                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                                <TouchableOpacity onPress={this.removeAuthentication}>
                                     <LinearGradient
                                         colors={['#0C1B32', '#01ab9d']}
                                         style={styles.signIn}

@@ -29,16 +29,6 @@ function MainTab() {
                     ),
                 }}
             />
-            {/* <Tab.Screen
-                name="Details"
-                component={Details}
-                options={{
-                    tabBarLabel: 'Details',
-                    tabBarIcon: () => (
-                        <MaterialCommunityIcons name="setting" color="#fff" size={26} />
-                    ),
-                }}
-            /> */}
             <Tab.Screen
                 name="Setting"
                 component={Setting}

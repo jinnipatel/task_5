@@ -27,7 +27,7 @@ const Setting = () => {
                 data={[
                     {
                         id: 1,
-                        image: require('../../assets/Img/img1-removebg-preview.png'),
+                        image: require('../../assets/Img/img4.png'),
                         name: "Parent Profile ",
                         FontI: "chevron-right"
                     },

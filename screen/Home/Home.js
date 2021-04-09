@@ -1,11 +1,10 @@
 
 import React, { Component } from 'react'
 import { View, FlatList, Text, StatusBar, SafeAreaView, StyleSheet, Image, TouchableOpacity, Alert, Button } from 'react-native'
-import flatlistData from './flatlistData'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './styles'
 import * as Animatable from 'react-native-animatable';
+
 
 
 // const FlatListItem = (props) => {
@@ -62,6 +61,12 @@ import * as Animatable from 'react-native-animatable';
 
 
 export default class Home extends Component {
+    // static NavigationOptions = {
+    //     drawerLabel: "Home",
+    //     drawerIcon: () => (
+    //         <Image source={require("../../assets/Img/img.jpg")} />
+    //     )
+    // }
 
     constructor() {
         super();
@@ -88,7 +93,11 @@ export default class Home extends Component {
 
             <View style={{ marginBottom: 10 }}>
                 <StatusBar backgroundColor='#04336a' barStyle="light-content" />
-
+                {/* <View>
+                    <TouchableOpacity onPress={() => this.props.navigation.dispatch(DrawerActions.openDrawer("Drawer"))}>
+                        <Text>Open</Text>
+                    </TouchableOpacity>
+                </View> */}
                 {/* <Icon name="person" size={40} onPress={() => this.props.navigation.navigate("Details")} style={{ textAlign: 'right' }} /> */}
 
                 {/* <FlatList

@@ -1,3 +1,4 @@
+import { CommonActions } from '@react-navigation/routers';
 import React from 'react';
 import {
     StyleSheet,
@@ -13,52 +14,137 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 
 
-function SplashScreen({ navigation }) {
-    setTimeout(() => { navigation.navigate("Login") }, 3000);
-    return (
 
-        <View style={styles.container}>
-            <StatusBar backgroundColor='#0C1B32' barStyle="light-content" />
-            <View style={styles.header}>
-                <Animatable.Image
-                    animation="bounceIn"
-                    iterationDelay={400}
-                    source={require("../../assets/Img/hello1.gif")} resizeMode='center' />
-            </View>
-            <Animatable.View style={styles.footer}
-                animation="fadeInUpBig"
-                iterationDelay={400} >
-                <Text style={styles.title}>Stay connected with everyone!</Text>
-                <Text style={styles.text}>Sign in with account</Text>
+class SplashScreen extends React.Component {
 
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <LinearGradient
-                            colors={['#0C1B32', '#01ab9d']}
-                            style={styles.signIn}
-                        >
-                            <Text style={styles.textSign}>Get Started</Text>
-                            <MaterialIcons
-                                name="navigate-next"
-                                color="#fff"
-                                size={20}
-                                style={{ alignSelf: 'center' }}
-                            />
-                        </LinearGradient>
-                    </TouchableOpacity>
+    resetToAuth = CommonActions.reset({
+        index: 0,
+        routes: [{
+            name: "Authenticated"
+        }]
+    })
+
+    resetToNotAuth = CommonActions.reset({
+        index: 0,
+        routes: [{
+            name: "NotAuthenticated"
+        }]
+    })
+
+    componentDidMount() {
+        this.checkAuthentication();
+    }
+
+    checkAuthentication = async () => {
+        let isAuthenticated = await AsyncStorage.getItem('signup_data');
+        if (isAuthenticated != null)
+            this.goTo(true);
+        else
+            this.goTo(false)
+
+    }
+    goTo = (value) => {
+        if (value) {
+            setTimeout(() => {
+                this.props.navigation.dispatch(this.resetToAuth);
+            }, 2000);
+        } else {
+            setTimeout(() => {
+                this.props.navigation.dispatch(this.resetToNotAuth);
+            }, 2000);
+        }
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <StatusBar backgroundColor='#0C1B32' barStyle="light-content" />
+                <View style={styles.header}>
+                    <Animatable.Image
+                        animation="bounceIn"
+                        iterationDelay={400}
+                        source={require("../../assets/Img/hello1.gif")} resizeMode='center' />
                 </View>
+                <Animatable.View style={styles.footer}
+                    animation="fadeInUpBig"
+                    iterationDelay={400} >
+                    <Text style={styles.title}>Stay connected with everyone!</Text>
+                    <Text style={styles.text}>Sign in with account</Text>
 
-            </Animatable.View>
-        </View>
-    )
+                    <View style={styles.button}>
+                        <TouchableOpacity>
+                            <LinearGradient
+                                colors={['#0C1B32', '#01ab9d']}
+                                style={styles.signIn}
+                            >
+                                <Text style={styles.textSign}>Get Started</Text>
+                                <MaterialIcons
+                                    name="navigate-next"
+                                    color="#fff"
+                                    size={20}
+                                    style={{ alignSelf: 'center' }}
+                                />
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
+
+                </Animatable.View>
+            </View>
+        )
+    }
+
 }
 
 export default SplashScreen;
+
+
+
+// function SplashScreen({ navigation }) {
+//     return (
+
+//         <View style={styles.container}>
+//             <StatusBar backgroundColor='#0C1B32' barStyle="light-content" />
+//             <View style={styles.header}>
+//                 <Animatable.Image
+//                     animation="bounceIn"
+//                     iterationDelay={400}
+//                     source={require("../../assets/Img/hello1.gif")} resizeMode='center' />
+//             </View>
+//             <Animatable.View style={styles.footer}
+//                 animation="fadeInUpBig"
+//                 iterationDelay={400} >
+//                 <Text style={styles.title}>Stay connected with everyone!</Text>
+//                 <Text style={styles.text}>Sign in with account</Text>
+
+//                 <View style={styles.button}>
+//                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+//                         <LinearGradient
+//                             colors={['#0C1B32', '#01ab9d']}
+//                             style={styles.signIn}
+//                         >
+//                             <Text style={styles.textSign}>Get Started</Text>
+//                             <MaterialIcons
+//                                 name="navigate-next"
+//                                 color="#fff"
+//                                 size={20}
+//                                 style={{ alignSelf: 'center' }}
+//                             />
+//                         </LinearGradient>
+//                     </TouchableOpacity>
+//                 </View>
+
+//             </Animatable.View>
+//         </View>
+//     )
+// }
+
+// export default SplashScreen;
 
 
 

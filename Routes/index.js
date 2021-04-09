@@ -1,42 +1,29 @@
-import React, { Component } from 'react';
-import { Image, View, Text } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Checkbox } from 'react-native-paper';
-import { NoAuthentication } from './NoAuthentication';
-import { Authentication } from './Authentication';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import SplashScreen from '../screen/Splash/SplashScreen';
+import NotAuthenticated from './NotAuthentication';
+import Authenticated from './Authentication'
 
 
-export default class index extends Component {
+const Stack = createStackNavigator();
 
-    state = {
-        userExits: false
-    }
-
-    componentDidMount() {
-        this.check();
-    }
-    check = async () => {
-        try {
-            let user = await AsyncStorage.getItem('signup_data');
-            let parsed = JSON.parse(user);
-            //console.log(parsed.email)
-            if (parsed !== null) {
-                this.setState({ userExits: true })
-            }
-            else {
-                this.setState({ userExits: false })
-            }
-
-        }
-        catch (error) {
-            alert(error);
-        }
-    }
-
-    render() {
-        if (this.state.userExits)
-            return <Authentication />
-        else
-            return <NoAuthentication />
-    }
+export const RootNavigator = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName="SplashScreen"
+                screenOptions={{
+                    headerShown: false
+                }}
+            >
+                <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="NotAuthenticated" component={NotAuthenticated} />
+                <Stack.Screen name="Authenticated" component={Authenticated} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
+
+
+

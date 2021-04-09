@@ -1,3 +1,4 @@
+import { CommonActions } from '@react-navigation/routers';
 import React, { Component } from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -27,6 +28,13 @@ export default class Auth extends Component {
         // AsyncStorage.setItem('user', JSON.stringify(obj));
         this.check()
     }
+    resetToAuth = CommonActions.reset({
+        index: 0,
+        routes: [{
+            name: "Authenticated"
+        }]
+    })
+
 
     check = async () => {
 
@@ -41,7 +49,7 @@ export default class Auth extends Component {
 
             if (parsed.email === this.state.email && parsed.password === this.state.password) {
                 // debugger
-                this.props.navigation.replace('Home');
+                this.props.navigation.dispatch(this.resetToAuth)
             } else {
                 // debugger
                 alert('Email or password is invalid');

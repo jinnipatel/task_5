@@ -16,24 +16,24 @@ const Stack = createStackNavigator();
 const Authenticated = () => {
     return (
 
-        <Stack.Navigator
-            initialRouteName="Home"
-        >
-            <Stack.Screen name="Home" component={DrawerScreen} options={{ headerShown: false }} options={({ navigation }) => ({
-                title: 'Home',
-                headerStyle: {
-                    backgroundColor: '#31726A',
-                },
-                headerTintColor: '#fff',
-                headerRight: () => (
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={DrawerScreen}
+                options={({ navigation }) => ({
+                    title: 'Home',
+                    headerStyle: {
+                        backgroundColor: '#31726A',
+                    },
+                    headerTintColor: '#fff',
+                    headerRight: () => (
 
-                    <Icon name="md-person-circle-outline" size={40} color="#fff" onPress={() => navigation.navigate("Details")} />
+                        <Icon name="md-person-circle-outline" size={40} color="#fff" onPress={() => navigation.navigate("Details")} />
 
-                )
+                    )
 
-            })} />
-            {/* <Stack.Screen name="Auth" component={Auth} options={{ headerShown: false }} /> */}
-            <Stack.Screen name="Details" component={Details} options={{
+                })} />
+            {/* <Stack.Screen name="Auth" component={Auth} />  */}
+            <Stack.Screen name="Details" component={Details} options={{ headerShown: false }} />
+            {/* options={{
                 title: 'User Details',
                 headerStyle: {
                     backgroundColor: '#fff',
@@ -42,15 +42,17 @@ const Authenticated = () => {
                 headerTitleStyle: {
 
                 },
-            }} />
-            <Stack.Screen name="FlatListDetails" component={FlatListDetails} />
-            <Stack.Screen name="Setting" component={Setting} options={{
-                title: 'Setting',
-                headerStyle: {
-                    backgroundColor: '#31726A',
-                },
-                headerTintColor: '#fff'
-            }} />
+            }} /> */}
+            <Stack.Screen name="FlatListDetails" component={FlatListDetails} options={{ headerShown: false }} />
+            <Stack.Screen name="Setting" component={Setting} options={{ headerShown: true }}
+                options={{
+
+                    title: 'Setting',
+                    headerStyle: {
+                        backgroundColor: '#31726A',
+                    },
+                    headerTintColor: '#fff'
+                }} />
         </Stack.Navigator>
     );
 }

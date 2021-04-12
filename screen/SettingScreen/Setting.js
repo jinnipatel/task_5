@@ -45,13 +45,17 @@ const Setting = () => {
                     }
                 ]}
                 renderItem={({ item }) => <TouchableOpacity>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20 }}>
+                    <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 20, marginBottom: 20 }}>
                         <View>
                             <Image source={item.image} style={{ width: 50, height: 50 }}></Image>
                         </View>
                         {/* <FontIcon name={item.FontIconName} size={26} style={{ marginRight: 50, alignSelf: 'flex-start' }} /> */}
-                        <Text style={{ marginLeft: 20, marginTop: 10, fontSize: 20 }}>{item.name}</Text>
-                        <FontIcon name={item.FontI} size={50} style={{ marginLeft: 50 }} />
+                        <View style={{ width: '48%' }}>
+                            <Text style={{ marginLeft: 20, marginTop: 10, fontSize: 18 }}>{item.name}</Text>
+                        </View>
+                        <View>
+                            <FontIcon name={item.FontI} size={50} style={{ marginLeft: 70 }} />
+                        </View>
                     </View>
                 </TouchableOpacity>}
                 ItemSeparatorComponent={renderSeparator} />

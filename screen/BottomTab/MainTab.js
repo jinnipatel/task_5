@@ -33,7 +33,7 @@ function MainTab() {
                 name="Setting"
                 component={Setting}
                 options={{
-                    tabBarLabel: 'Setting',
+                    tabBarLabel: 'setting',
                     tabBarIcon: () => (
                         <MaterialCommunityIcons name="gear" color="#fff" size={26} />
                     )
